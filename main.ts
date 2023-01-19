@@ -7,9 +7,11 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         SpeedX = 0
         SpeedY = -1
     }
+    mySprite.setPosition(X, Y)
+    mySprite2.setPosition(X, Y)
 })
 function spawnFood () {
-    mySprite2 = sprites.create(img`
+    MySprite3 = sprites.create(img`
         . . . . . . . e c 7 . . . . . . 
         . . . . e e e c 7 7 e e . . . . 
         . . c e e e e c 7 e 2 2 e e . . 
@@ -38,25 +40,31 @@ function spawnFood () {
             }
         }
     }
-    mySprite.setPosition(X, Y)
+    MySprite3.setPosition(X, Y)
 }
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (SpeedX == 0) {
         SpeedX = -1
         SpeedY = 0
     }
+    mySprite.setPosition(X, Y)
+    mySprite2.setPosition(X, Y)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (SpeedX == 0) {
         SpeedX = 1
         SpeedY = 0
     }
+    mySprite.setPosition(X, Y)
+    mySprite2.setPosition(X, Y)
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (SpeedY == 0) {
         SpeedX = 0
         SpeedY = 1
     }
+    mySprite.setPosition(X, Y)
+    mySprite2.setPosition(X, Y)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy()
@@ -67,9 +75,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 sprites.onDestroyed(SpriteKind.Player, function (sprite) {
     game.over(false)
 })
+let isEmptyPositions = false
+let MySprite3: Sprite = null
 let Y = 0
 let X = 0
-let isEmptyPositions = false
 let Growth = 0
 let SpeedY = 0
 let SpeedX = 0
@@ -79,45 +88,46 @@ let mySprite: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
 mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 f f f 5 5 . . . . 
-    5 5 5 5 5 5 5 f 1 1 5 5 2 . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 2 2 . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 2 2 2 . 
-    5 5 5 5 5 5 5 5 5 5 5 5 2 2 . . 
-    5 5 5 5 5 5 5 f 1 1 5 5 2 . . . 
-    5 5 5 5 5 5 5 f f f 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    . . . . . . . . . . . . . . . . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 mySprite.setFlag(SpriteFlag.AutoDestroy, true)
-mySprite.setPosition(20, 8)
+mySprite.setPosition(8, 8)
 Snake.push(mySprite)
 mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-    . . . . . . . . . . . . . . . . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+    . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-mySprite2.setPosition(10, 8)
-Snake.push(mySprite)
+mySprite2.setFlag(SpriteFlag.AutoDestroy, true)
+mySprite2.setPosition(24, 8)
+Snake.push(mySprite2)
 SpeedX = 1
 SpeedY = 0
 Growth = 0
@@ -126,34 +136,34 @@ info.setScore(0)
 pause(2000)
 forever(function () {
     if (Growth == 0) {
-        mySprite = Snake.pop()
+        mySprite = Snake.shift()
     } else {
         Growth = 0
         mySprite = sprites.create(img`
             . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-            5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-            5 5 5 5 5 5 5 f f f 5 5 . . . . 
-            5 5 5 5 5 5 5 f 1 1 5 5 2 . . . 
-            5 5 5 5 5 5 5 5 5 5 5 5 2 2 . . 
-            5 5 5 5 5 5 5 5 5 5 5 5 2 2 2 . 
-            5 5 5 5 5 5 5 5 5 5 5 5 2 2 . . 
-            5 5 5 5 5 5 5 f 1 1 5 5 2 . . . 
-            5 5 5 5 5 5 5 f f f 5 5 . . . . 
-            5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-            5 5 5 5 5 5 5 5 5 5 5 5 . . . . 
-            . . . . . . . . . . . . . . . . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+            . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Player)
         mySprite.setFlag(SpriteFlag.AutoDestroy, true)
     }
     X = Snake[Snake.length - 1].x + 16 * SpeedX
-    Y = Snake[Snake.length - 1].x + 15 * SpeedX
+    Y = Snake[Snake.length - 1].y + 15 * SpeedY
     mySprite.setPosition(X, Y)
     Snake.push(mySprite)
-    if (Snake.length == 0) {
+    if (Snake.length == 80) {
         game.over(true)
     }
     pause(200)
