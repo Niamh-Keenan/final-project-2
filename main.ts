@@ -136,7 +136,7 @@ info.setScore(0)
 pause(2000)
 forever(function () {
     if (growth == 0) {
-        mySprite = snake.pop()
+        mySprite = snake.shift()
     } else {
         growth = 0
         mySprite = sprites.create(img`
