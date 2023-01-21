@@ -75,6 +75,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 sprites.onDestroyed(SpriteKind.Player, function (sprite) {
     game.over(false)
 })
+// created by Niamh Keenan 
+// On January 16th,  2023
+// 
+// This program creates a snake sprite controlled by the arrow buttons. It chases the apple sprite in order to expand.
 let isEmptyPositions = false
 let Mysprite3: Sprite = null
 let y = 0
@@ -163,7 +167,7 @@ forever(function () {
     y = snake[snake.length - 1].y + 15 * speedY
     mySprite.setPosition(x, y)
     snake.push(mySprite)
-    if (snake.length == 80) {
+    if (snake.length == 15) {
         game.over(true)
     }
     pause(200)
